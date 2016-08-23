@@ -267,6 +267,13 @@ texture_array_lod(const _mesa_glsl_parse_state *state)
 }
 
 static bool
+texture_array_grad(const _mesa_glsl_parse_state *state)
+{
+    return state->stage == MESA_SHADER_FRAGMENT &&
+           (state->is_version(130, 0) || state->EXT_gpu_shader4_enable);
+}
+
+static bool
 fs_texture_array(const _mesa_glsl_parse_state *state)
 {
    return state->stage == MESA_SHADER_FRAGMENT &&
@@ -2035,6 +2042,10 @@ builtin_builder::create_builtins()
 
    add_function("texture2DGradARB",
                 _texture(ir_txd, shader_texture_lod, glsl_type::vec4_type,  glsl_type::sampler2D_type, glsl_type::vec2_type),
+                NULL);
+
+   add_function("texture2DArrayGradARB",
+                _texture(ir_txd, texture_array_grad, glsl_type::vec4_type,  glsl_type::sampler2DArray_type, glsl_type::vec3_type),
                 NULL);
 
    add_function("texture2DProjGradARB",
