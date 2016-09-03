@@ -2044,7 +2044,7 @@ builtin_builder::create_builtins()
                 _texture(ir_txd, shader_texture_lod, glsl_type::vec4_type,  glsl_type::sampler2D_type, glsl_type::vec2_type),
                 NULL);
 
-   add_function("texture2DArrayGradARB",
+   add_function("texture2DArrayGrad",
                 _texture(ir_txd, texture_array_grad, glsl_type::vec4_type,  glsl_type::sampler2DArray_type, glsl_type::vec3_type),
                 NULL);
 
